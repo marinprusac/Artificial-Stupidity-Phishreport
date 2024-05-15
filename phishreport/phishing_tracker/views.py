@@ -11,10 +11,10 @@ from django.contrib import messages
 def index(request: HttpRequest):
     return render(request, 'index.html', None)
   
-def login(request):
+def login_view(request):
     if request.method == "POST":
-        username = request.POST["username"]
-        password = request.POST["password"]
+        username = request.POST["email"]
+        password = request.POST["pass"]
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
@@ -48,7 +48,7 @@ def register(request: HttpRequest):
     if len(password) < 8:
         messages.error(request, "Password should be at least 8 characters long.")
         return render(request, "register.html")
-    user = User.objects.create_user(first_name=name, last_name=surname, email=email, password=password)
+    user = User.objects.create_user(username=email, first_name=name, last_name=surname, email=email, password=password)
     user.save()
     return redirect("login")
 
