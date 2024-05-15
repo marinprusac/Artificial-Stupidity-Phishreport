@@ -2,11 +2,11 @@ from django.db import models
 
 # Create your models here.
 
-class PhishingEventModel(models.Model):
+class PhishingEvent(models.Model):
     event_id = models.AutoField(primary_key=True)
 
     name = models.CharField(max_length=100)
-    date = models.DateField()
+    timestamp = models.DateTimeField()
     affected_brand = models.CharField(max_length=100)
     description = models.TextField()
     malocious_campaign_url = models.URLField()
@@ -24,8 +24,8 @@ class PhishingEventModel(models.Model):
     }
     status = models.CharField(max_length=100, choices=STATUS_TYPES, default='TODO')
 
-class AnalystCommentModel(models.Model):
+class AnalystComment(models.Model):
     analyst_comment_id = models.AutoField(primary_key=True)
-    event = models.ForeignKey(PhishingEventModel, on_delete=models.CASCADE)
-    date = models.DateField()
+    event = models.ForeignKey(PhishingEvent, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField()
     comment = models.TextField()

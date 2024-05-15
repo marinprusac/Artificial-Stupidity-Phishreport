@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 
+def index(request):
+    return render(request, 'index.html', None)
+
 def login(request):
     if request.method == "POST":
         username = request.POST["username"]
