@@ -11,31 +11,36 @@
 </head>
 <body>
     <div class="container m-10 pt-5">
+        <a class="btn btn-primary btn-lg" role="button" href="/login">Log in</a>
+        <a class="btn btn-primary btn-lg" role="button" href="/register">Register</a>
+        <a class="btn btn-primary btn-lg" role="button" href="/report">Report</a>
+        <a class="btn btn-primary btn-lg" role="button" href="/history">History</a>
+
         <form method="post">
             {% csrf_token %}
             <div class="form-group">
                 <label for="eventNameInput">Name</label>
-                <input name="eventNameInput" type="text" class="form-control" id="eventNameInput">
+                <input name="name" type="text" class="form-control" id="eventNameInput">
             </div>
 
             <div class="form-group">
                 <label for="eventBrandInput">Affected Brand</label>
-                <input name="eventBrandInput" type="text" class="form-control" id="eventBrandInput">
+                <input name="affected_brand" type="text" class="form-control" id="eventBrandInput">
             </div>
             
             <div class="form-group">
                 <label for="maliciousUrlInput">Malicious URL</label>
-                <input name="maliciousUrlInput" type="url" class="form-control" id="maliciousUrlInput">
+                <input name="malicious_campaign_url" type="url" class="form-control" id="maliciousUrlInput">
             </div>
 
             <div class="form-group">
                 <label for="eventDescriptionTextArea">Description</label>
-                <textarea name="eventDescriptionTextArea" class="form-control" id="eventDescriptionTextArea" rows="3"></textarea>
+                <textarea name="description" class="form-control" id="eventDescriptionTextArea" rows="3"></textarea>
             </div>
 
             <div class="form-group">
                 <label for="eventDescriptionTextArea">Keywords</label>
-                <textarea name="eventKeywordsTextArea" class="form-control" id="eventKeywordsTextArea" rows="2"></textarea>
+                <textarea name="list_of_matching_keywords" class="form-control" id="eventKeywordsTextArea" rows="2"></textarea>
                 <small id="eventKeywordsHelp" class="form-text text-muted">Write keywords about the issue, seperated by commas (",").</small>
             </div>            
 

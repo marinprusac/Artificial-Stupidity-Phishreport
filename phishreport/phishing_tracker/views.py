@@ -25,25 +25,15 @@ def report(request: HttpRequest):
     if request.method == "POST":
         form = PhishingEventForm(request.POST)
         if form.is_valid():
+            form.timestamp = datetime.datetime.now()
             form.save()
-            username = request.POST.get("eventNameInput")
-            brand = request.POST.get("eventBrandInput")
-            malicious_url = request.POST.get("maliciousUrlInput")
-            desc = request.POST.get("eventDescriptionTextArea")
-            keywords = request.POST.get("eventKeywordsTextArea")
-            timedate = datetime.datetime.now()
-
-            event = PhishingEvent(
-                name=username,
-                affected_brand=brand,
-                malicious_campaign_url=malicious_url,
-                timestamp=timedate,
-                list_of_matching_keywords=keywords,
-                description=desc,
-                status="TODO"
-            )
-            event.save()
+            print(PhishingEvent.objects.all().values())
+        else:
+            print(form.errors.as_data())
         return render(request, 'report/report.html', None)
     else:
         return render(request, 'report/report.html', None)
 
+def history(request: HttpRequest):
+    data = PhishingEvent.objects.all().values()
+    return render(request, 'history/history.html', {'items': data})
