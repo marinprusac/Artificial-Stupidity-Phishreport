@@ -16,7 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from phishing_tracker import views
+from . import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path(settings.LOGIN_URL, views.login)
 ]
