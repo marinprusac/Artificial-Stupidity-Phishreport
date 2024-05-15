@@ -9,7 +9,7 @@ class PhishingEvent(models.Model):
     timestamp = models.DateTimeField()
     affected_brand = models.CharField(max_length=100)
     description = models.TextField()
-    malocious_campaign_url = models.URLField()
+    malicious_campaign_url = models.URLField()
     malicious_domain_registartion_date = models.DateField()
 
     malicious_domain_dns_record_a = models.GenericIPAddressField()
