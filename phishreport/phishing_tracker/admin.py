@@ -2,8 +2,8 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import PhishingEventModel
-admin.site.register(PhishingEventModel)
+from .models import PhishingEvent
+admin.site.register(PhishingEvent)
 
-from .models import AnalystCommentModel
-admin.site.register(AnalystCommentModel)
+from .models import AnalystComment
+admin.site.register(AnalystComment)
