@@ -1,23 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Phinsing Report Homepage</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Report History</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-
     <div class="container m-10 pt-5">
-        <h1>Welcome to Atificial Stupidity Phish Report</h1>
-        <p>Feel free to report phishing attacks.</p>  
         <a class="btn btn-primary btn-lg" role="button" href="/login">Log in</a>
         <a class="btn btn-primary btn-lg" role="button" href="/register">Register</a>
         <a class="btn btn-primary btn-lg" role="button" href="/report">Report</a>
         <a class="btn btn-primary btn-lg" role="button" href="/history">History</a>
+
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Event Name</th>
+                <th scope="col">Malicious URL</th>
+                <th scope="col">Affected Brand</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>{{item.name}}</td>
+                        <td>{{item.malicious_campaign_url}}</td>
+                        <td>{{item.affected_brand}}</td>
+                    </tr>    
+                {% endfor %}
+
+            </tbody>
+          </table>
+
+
     </div>
 </body>
 </html>
