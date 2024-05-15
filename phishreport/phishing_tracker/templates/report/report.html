@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Report Form</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container m-10 pt-5">
+        <form>
+            <div class="form-group">
+                <label for="eventNameInput">Name</label>
+                <input type="text" class="form-control" id="eventNameInput">
+            </div>
+
+            <div class="form-group">
+                <label for="eventBrandInput">Affected Brand</label>
+                <input type="text" class="form-control" id="eventBrandInput">
+            </div>
+            
+            <div class="form-group">
+                <label for="maliciousUrlInput">Malicious URL</label>
+                <input type="url" class="form-control" id="maliciousUrlInput">
+            </div>
+
+            <div class="form-group">
+                <label for="eventDescriptionTextArea">Description</label>
+                <textarea class="form-control" id="eventDescriptionTextArea" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="eventDescriptionTextArea">Keywords</label>
+                <textarea class="form-control" id="eventKeywordsTextArea" rows="2"></textarea>
+                <small id="eventKeywordsHelp" class="form-text text-muted">Write keywords about the issue, seperated by commas (",").</small>
+            </div>            
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+
+
+                
+            
+        </form>
+    </div>
+</body>
+</html>

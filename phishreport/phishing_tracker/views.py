@@ -16,3 +16,6 @@ def login(request):
         else:
             return HttpResponse("Fail")
     return render(request, 'login.html')
+
+def report(request):
+    return render(request, 'report/report.html', None)

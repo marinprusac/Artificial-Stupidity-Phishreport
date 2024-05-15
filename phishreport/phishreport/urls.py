@@ -18,9 +18,12 @@ from django.urls import path
 from phishing_tracker import views
 from . import settings
 from django.contrib import admin
+from phishing_tracker.views import index, report
 
 urlpatterns = [
+    path('', index, name='index'),
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path(settings.LOGIN_URL, views.login, name='login'),
+    path('report', report, name='report'),
 ]
