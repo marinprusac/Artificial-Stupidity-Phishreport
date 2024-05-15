@@ -1,10 +1,14 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest
+from .forms import PhishingEventForm
+from .models import PhishingEvent
+import datetime
 
-def index(request):
+# Create your views here.
+def index(request: HttpRequest):
     return render(request, 'index.html', None)
-
+  
 def login(request):
     if request.method == "POST":
         username = request.POST["username"]
@@ -17,5 +21,29 @@ def login(request):
             return HttpResponse("Fail")
     return render(request, 'login.html')
 
-def report(request):
-    return render(request, 'report/report.html', None)
+def report(request: HttpRequest):
+    if request.method == "POST":
+        form = PhishingEventForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = request.POST.get("eventNameInput")
+            brand = request.POST.get("eventBrandInput")
+            malicious_url = request.POST.get("maliciousUrlInput")
+            desc = request.POST.get("eventDescriptionTextArea")
+            keywords = request.POST.get("eventKeywordsTextArea")
+            timedate = datetime.datetime.now()
+
+            event = PhishingEvent(
+                name=username,
+                affected_brand=brand,
+                malicious_campaign_url=malicious_url,
+                timestamp=timedate,
+                list_of_matching_keywords=keywords,
+                description=desc,
+                status="TODO"
+            )
+            event.save()
+        return render(request, 'report/report.html', None)
+    else:
+        return render(request, 'report/report.html', None)
+
