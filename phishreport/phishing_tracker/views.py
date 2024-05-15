@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse, HttpRequest
 from .forms import PhishingEventForm
 from .models import PhishingEvent
 import datetime
+from django.contrib.auth.models import User
+from django.contrib import messages
 
 # Create your views here.
 def index(request: HttpRequest):
@@ -47,3 +49,18 @@ def report(request: HttpRequest):
     else:
         return render(request, 'report/report.html', None)
 
+def register(request: HttpRequest):
+    if request.method == "GET":
+        return render(request, 'register.html', None)
+    elif request.method != "POST":
+        return HttpResponse("Unsupported HTTP Method.")
+    name = request.POST["name"]
+    surname = request.POST["sname"]
+    email = request.POST["email"]
+    password = request.POST["pass"]
+    if len(password) < 8:
+        messages.error(request, "Password should be at least 8 characters long.")
+        return render(request, "register.html")
+    user = User.objects.create_user(first_name=name, last_name=surname, email=email, password=password)
+    user.save()
+    return redirect("login")
